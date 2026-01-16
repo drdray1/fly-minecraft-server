@@ -21,6 +21,10 @@ kill_timeout = '30s'
   USE_AIKAR_FLAGS = 'TRUE'
   VIEW_DISTANCE = '8'
   SIMULATION_DISTANCE = '6'
+  # Increase timeout to prevent disconnects
+  MAX_TICK_TIME = '-1'
+  PLAYER_IDLE_TIMEOUT = '0'
+  NETWORK_COMPRESSION_THRESHOLD = '512'
   # Whitelist - only allow approved players
   WHITELIST = 'TRUE'
   ENFORCE_WHITELIST = 'TRUE'
