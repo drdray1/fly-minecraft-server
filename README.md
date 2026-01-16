@@ -6,8 +6,9 @@ A Paper Minecraft server running on Fly.io with scale-to-zero to minimize costs.
 
 | | |
 |---|---|
-| **Server IP** | `109.105.222.39:25565` |
-| **Minecraft Version** | 1.21.11 (Java Edition) |
+| **Java IP** | `109.105.222.39:25565` |
+| **Bedrock IP** | `109.105.222.39:19132` |
+| **Minecraft Version** | 1.21.11 |
 | **Server Type** | Paper |
 | **Region** | Los Angeles (lax) |
 
@@ -19,6 +20,8 @@ A Paper Minecraft server running on Fly.io with scale-to-zero to minimize costs.
 | **GriefPrevention** | Claim land to protect your builds |
 | **Simple Voice Chat** | Proximity voice chat with other players |
 | **SinglePlayerSleep** | One player can skip the night |
+| **Geyser + Floodgate** | Allows Bedrock players (Xbox, Switch, Phone) to join |
+| **TimberZ** | Chop whole trees at once with an axe |
 
 ## How to Use Plugins
 
@@ -51,6 +54,18 @@ A Paper Minecraft server running on Fly.io with scale-to-zero to minimize costs.
 ### Sleep Skip
 - Just one player needs to sleep to skip the night
 - No more waiting for everyone!
+
+### Geyser (Bedrock Support)
+Bedrock players (Xbox, Switch, Phone, Windows 10) can join the server!
+- **Bedrock IP:** `109.105.222.39`
+- **Bedrock Port:** `19132`
+- Bedrock players appear with a `*` prefix (e.g., `*BedrockPlayer`)
+- No account linking required thanks to Floodgate
+
+### TimberZ (Tree Chopping)
+- Chop the bottom of a tree and the whole tree falls
+- Works with any axe
+- Toggle with `/timber` command
 
 ## Whitelist
 
