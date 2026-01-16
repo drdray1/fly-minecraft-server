@@ -21,6 +21,11 @@ kill_timeout = '30s'
   USE_AIKAR_FLAGS = 'TRUE'
   VIEW_DISTANCE = '8'
   SIMULATION_DISTANCE = '6'
+  # Whitelist - only allow approved players
+  WHITELIST = 'TRUE'
+  ENFORCE_WHITELIST = 'TRUE'
+  # Plugins from Modrinth
+  MODRINTH_PROJECTS = 'essentialsx,griefprevention,simple-voice-chat,singleplayersleep'
 
 [[mounts]]
   source = 'mc_data'
@@ -45,6 +50,14 @@ kill_timeout = '30s'
     interval = '30s'
     timeout = '5s'
     grace_period = '60s'
+
+# Voice chat UDP port
+[[services]]
+  protocol = 'udp'
+  internal_port = 24454
+
+  [[services.ports]]
+    port = 24454
 
 [[vm]]
   memory = '4gb'
