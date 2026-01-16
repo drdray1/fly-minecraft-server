@@ -1,10 +1,8 @@
-# fly.toml app configuration file generated for minecraft-mc on 2024-07-18T19:26:58+01:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
+# fly.toml app configuration file for da-mines Paper Minecraft server
+# See https://fly.io/docs/reference/configuration/
 
-app = 'minecraft-mc'
-primary_region = 'lhr'
+app = 'da-mines'
+primary_region = 'lax'
 kill_signal = 'SIGINT'
 kill_timeout = '5s'
 
@@ -12,18 +10,17 @@ kill_timeout = '5s'
   image = 'itzg/minecraft-server:latest'
 
 [env]
-  AUTOSTOP_PKILL_USE_SUDO = 'TRUE'
+  TYPE = 'PAPER'
+  EULA = 'TRUE'
+  MEMORY = '2G'
+  ENABLE_AUTOSTOP = 'TRUE'
   AUTOSTOP_TIMEOUT_EST = '120'
   AUTOSTOP_TIMEOUT_INIT = '120'
-  ENABLE_AUTOSTOP = 'TRUE'
-  EULA = 'TRUE'
-  MEMORY = '1G'
-  PRIMARY_REGION = 'lhr'
+  AUTOSTOP_PKILL_USE_SUDO = 'TRUE'
 
 [[mounts]]
-  source = 'mc_server'
+  source = 'mc_data'
   destination = '/data'
-  processes = ['app']
 
 [[services]]
   protocol = 'tcp'
@@ -38,6 +35,6 @@ kill_timeout = '5s'
     soft_limit = 20
 
 [[vm]]
-  memory = '2gb'
+  memory = '4gb'
   cpu_kind = 'shared'
-  cpus = 4
+  cpus = 2
