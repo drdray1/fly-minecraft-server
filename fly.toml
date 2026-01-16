@@ -24,8 +24,8 @@ kill_timeout = '30s'
   # Whitelist - only allow approved players
   WHITELIST = 'TRUE'
   ENFORCE_WHITELIST = 'TRUE'
-  # Plugins from Modrinth
-  MODRINTH_PROJECTS = 'essentialsx,griefprevention,simple-voice-chat,singleplayersleep'
+  # Plugins (direct URLs)
+  PLUGINS = 'https://cdn.modrinth.com/data/hXiIvTyT/versions/Oa9ZDzZq/EssentialsX-2.21.2.jar,https://cdn.modrinth.com/data/O4o4mKaq/versions/iaJtn30B/GriefPrevention.jar,https://cdn.modrinth.com/data/9eGKb6K1/versions/d5f6AAog/voicechat-bukkit-2.6.11.jar,https://cdn.modrinth.com/data/piy7OZtR/versions/MGrqCMDn/singleplayersleep-1.1.0.jar'
 
 [[mounts]]
   source = 'mc_data'
