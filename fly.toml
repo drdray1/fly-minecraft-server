@@ -4,7 +4,7 @@
 app = 'da-mines'
 primary_region = 'lax'
 kill_signal = 'SIGINT'
-kill_timeout = '5s'
+kill_timeout = '30s'
 
 [build]
   image = 'itzg/minecraft-server:latest'
@@ -25,6 +25,9 @@ kill_timeout = '5s'
 [[services]]
   protocol = 'tcp'
   internal_port = 25565
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
 
   [[services.ports]]
     port = 25565
@@ -33,6 +36,11 @@ kill_timeout = '5s'
     type = 'connections'
     hard_limit = 25
     soft_limit = 20
+
+  [[services.tcp_checks]]
+    interval = '30s'
+    timeout = '5s'
+    grace_period = '60s'
 
 [[vm]]
   memory = '4gb'
