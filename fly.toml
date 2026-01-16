@@ -12,11 +12,15 @@ kill_timeout = '30s'
 [env]
   TYPE = 'PAPER'
   EULA = 'TRUE'
-  MEMORY = '2G'
+  MEMORY = '3G'
   ENABLE_AUTOSTOP = 'TRUE'
   AUTOSTOP_TIMEOUT_EST = '120'
   AUTOSTOP_TIMEOUT_INIT = '120'
   AUTOSTOP_PKILL_USE_SUDO = 'TRUE'
+  # Paper performance optimizations
+  USE_AIKAR_FLAGS = 'TRUE'
+  VIEW_DISTANCE = '8'
+  SIMULATION_DISTANCE = '6'
 
 [[mounts]]
   source = 'mc_data'
