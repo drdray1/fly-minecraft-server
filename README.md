@@ -12,6 +12,12 @@ A Paper Minecraft server running on Fly.io with scale-to-zero to minimize costs.
 | **Region** | Los Angeles (lax) |
 | **World Seed** | `-1719400860919629363` |
 
+### Seed Maps
+- [Slime Chunks](https://www.chunkbase.com/apps/slime-finder#-1719400860919629363)
+- [Village Finder](https://www.chunkbase.com/apps/village-finder#-1719400860919629363)
+- [Stronghold Finder](https://www.chunkbase.com/apps/stronghold-finder#-1719400860919629363) (End Portal)
+- [All Structures](https://www.chunkbase.com/apps/seed-map#-1719400860919629363)
+
 ## Plugins
 
 | Plugin | Description |
