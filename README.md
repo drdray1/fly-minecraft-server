@@ -11,12 +11,25 @@ A Paper Minecraft server running on Fly.io with scale-to-zero to minimize costs.
 | **Server Type** | Paper |
 | **Region** | Los Angeles (lax) |
 | **World Seed** | `-1719400860919629363` |
+| **World Spawn** | `0, 74, 0` |
 
-### Seed Maps
+### Seed Maps (Chunkbase)
+- [All Structures Map](https://www.chunkbase.com/apps/seed-map#-1719400860919629363)
 - [Slime Chunks](https://www.chunkbase.com/apps/slime-finder#-1719400860919629363)
 - [Village Finder](https://www.chunkbase.com/apps/village-finder#-1719400860919629363)
 - [Stronghold Finder](https://www.chunkbase.com/apps/stronghold-finder#-1719400860919629363) (End Portal)
-- [All Structures](https://www.chunkbase.com/apps/seed-map#-1719400860919629363)
+- [Nether Fortress Finder](https://www.chunkbase.com/apps/nether-fortress-finder#-1719400860919629363)
+- [Ancient City Finder](https://www.chunkbase.com/apps/ancient-city-finder#-1719400860919629363)
+- [Ocean Monument Finder](https://www.chunkbase.com/apps/ocean-monument-finder#-1719400860919629363)
+- [Biome Finder](https://www.chunkbase.com/apps/biome-finder#-1719400860919629363)
+
+## Server Rules
+
+1. **Be respectful** - No griefing, stealing, or harassment
+2. **Claim your land** - Use GriefPrevention to protect your builds
+3. **No cheating** - No hacked clients or exploits
+4. **Keep chat friendly** - No spam or offensive content
+5. **Have fun!**
 
 ## Plugins
 
@@ -117,6 +130,21 @@ Push to `main` branch to trigger automatic deployment via GitHub Actions.
 
 - `APP_NAME` - Fly.io app name (`da-mines`)
 - `FLY_API_TOKEN` - Fly.io deploy token
+
+## Backups
+
+The server volume has **automatic snapshots** enabled by Fly.io:
+- Snapshots are taken daily
+- Last 5 snapshots are retained
+- To restore, contact Fly.io support or use `flyctl volumes snapshots list`
+
+## Discord Integration (Optional)
+
+To get notifications when players join/leave, you can set up a Discord webhook:
+
+1. Create a webhook in your Discord server (Server Settings → Integrations → Webhooks)
+2. Add the [DiscordSRV](https://modrinth.com/plugin/discordsrv) plugin to the server
+3. Configure with your webhook URL
 
 ## Cost
 
