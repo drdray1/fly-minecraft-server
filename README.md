@@ -10,6 +10,7 @@ A Paper Minecraft server running on Fly.io with scale-to-zero to minimize costs.
 | **Minecraft Version** | 1.21.11 (Java Edition) |
 | **Server Type** | Paper |
 | **Region** | Los Angeles (lax) |
+| **World Seed** | `-1719400860919629363` |
 
 ## Plugins
 
