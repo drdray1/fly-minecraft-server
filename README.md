@@ -99,6 +99,8 @@ This server is whitelisted. To join, an admin must add you.
 
 See [PLAYER_DATA.md](PLAYER_DATA.md) for commands to query player inventories, equipment, health, and more.
 
+See [GIVE_ITEMS.md](GIVE_ITEMS.md) for commands to give players items, including enchanted weapons, armor, and tools.
+
 Check server status:
 ```bash
 flyctl status --app da-mines
