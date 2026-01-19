@@ -6,16 +6,22 @@ This guide covers how to give players items (including enchanted ones) via rcon 
 
 ### Command Format via flyctl
 
-All commands are executed through the Fly.io SSH console:
-
+**For simple items** (no enchantments):
 ```bash
-flyctl ssh console --app da-mines -C "rcon-cli <command>"
+flyctl ssh console --app da-mines -C "rcon-cli give PlayerName item_name amount"
 ```
+
+**For enchanted items** (IMPORTANT - must use `minecraft:give` and pipe through shell):
+```bash
+flyctl ssh console --app da-mines -C "sh -c 'printf \"minecraft:give PlayerName item[enchantments={...}] 1\n\" | rcon-cli'"
+```
+
+> **Why `minecraft:give`?** EssentialsX intercepts the regular `give` command and doesn't support the 1.21 component syntax. Using `minecraft:give` bypasses EssentialsX and uses the vanilla Minecraft command.
 
 ### Basic Give Syntax
 
 ```
-/give <player> <item> [amount]
+give <player> <item> [amount]
 ```
 
 **Examples:**
@@ -24,7 +30,7 @@ flyctl ssh console --app da-mines -C "rcon-cli <command>"
 flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond 64"
 
 # Give 1 diamond sword
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_sword"
+flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_sword 1"
 
 # Give 16 golden apples
 flyctl ssh console --app da-mines -C "rcon-cli give PlayerName golden_apple 16"
@@ -131,6 +137,8 @@ flyctl ssh console --app da-mines -C "rcon-cli give PlayerName enchanted_golden_
 
 Minecraft 1.21+ uses a new component-based system for item data. Components are added in square brackets after the item name.
 
+> **Remember:** Use `minecraft:give` (not `give`) and pipe through shell for components to work!
+
 ### Enchantments Component
 
 ```
@@ -139,7 +147,7 @@ item[enchantments={enchant1:level,enchant2:level}]
 
 **Example:**
 ```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_sword[enchantments={sharpness:5,unbreaking:3,mending:1}]"
+flyctl ssh console --app da-mines -C "sh -c 'printf \"minecraft:give PlayerName diamond_sword[enchantments={sharpness:5,unbreaking:3,mending:1}] 1\n\" | rcon-cli'"
 ```
 
 ### Custom Name Component
@@ -150,18 +158,13 @@ item[custom_name='\"Display Name\"']
 
 **Example:**
 ```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_sword[custom_name='\"Excalibur\"']"
+flyctl ssh console --app da-mines -C "sh -c 'printf \"minecraft:give PlayerName diamond_sword[custom_name=\\\"Excalibur\\\"] 1\n\" | rcon-cli'"
 ```
 
 ### Lore Component
 
 ```
 item[lore=['\"Line 1\"','\"Line 2\"']]
-```
-
-**Example:**
-```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_sword[lore=['\"A legendary blade\"','\"Forged in dragon fire\"']]"
 ```
 
 ### Unbreakable Component
@@ -172,7 +175,7 @@ item[unbreakable={}]
 
 **Example:**
 ```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_pickaxe[unbreakable={}]"
+flyctl ssh console --app da-mines -C "sh -c 'printf \"minecraft:give PlayerName diamond_pickaxe[unbreakable={}] 1\n\" | rcon-cli'"
 ```
 
 ### Damage Component (Durability)
@@ -183,49 +186,49 @@ item[damage=<value>]
 
 The `damage` value represents how much durability has been used (0 = full durability).
 
-**Example:**
-```bash
-# Give a diamond sword with half durability used (max is 1561)
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_sword[damage=780]"
-```
-
 ### Combining Components
 
 Components can be combined with commas:
 
-```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_sword[enchantments={sharpness:5,mending:1},custom_name='\"Excalibur\"',unbreakable={}]"
+```
+item[enchantments={sharpness:5,mending:1},unbreakable={}]
 ```
 
 ---
 
 ## Comprehensive Examples
 
+> **Command Pattern for ALL enchanted items:**
+> ```bash
+> flyctl ssh console --app da-mines -C "sh -c 'printf \"minecraft:give PLAYER ITEM[enchantments={...}] 1\n\" | rcon-cli'"
+> ```
+> Replace `PLAYER` with the username and `ITEM[enchantments={...}]` with the item specification below.
+
 ### Weapons
 
 #### Diamond Sword (Max Enchants)
 ```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_sword[enchantments={sharpness:5,knockback:2,fire_aspect:2,looting:3,sweeping_edge:3,unbreaking:3,mending:1}]"
+flyctl ssh console --app da-mines -C "sh -c 'printf \"minecraft:give PlayerName diamond_sword[enchantments={sharpness:5,knockback:2,fire_aspect:2,looting:3,sweeping_edge:3,unbreaking:3,mending:1}] 1\n\" | rcon-cli'"
 ```
 
 #### Netherite Sword (Max Enchants)
 ```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName netherite_sword[enchantments={sharpness:5,knockback:2,fire_aspect:2,looting:3,sweeping_edge:3,unbreaking:3,mending:1}]"
+flyctl ssh console --app da-mines -C "sh -c 'printf \"minecraft:give PlayerName netherite_sword[enchantments={sharpness:5,knockback:2,fire_aspect:2,looting:3,sweeping_edge:3,unbreaking:3,mending:1}] 1\n\" | rcon-cli'"
 ```
 
 #### Diamond Axe (Combat)
-```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName diamond_axe[enchantments={sharpness:5,unbreaking:3,mending:1}]"
+```
+diamond_axe[enchantments={sharpness:5,unbreaking:3,mending:1}]
 ```
 
 #### Smite Sword (Undead Slayer)
-```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName netherite_sword[enchantments={smite:5,knockback:2,fire_aspect:2,looting:3,unbreaking:3,mending:1}]"
+```
+netherite_sword[enchantments={smite:5,knockback:2,fire_aspect:2,looting:3,unbreaking:3,mending:1}]
 ```
 
 #### Mace (1.21+)
-```bash
-flyctl ssh console --app da-mines -C "rcon-cli give PlayerName mace[enchantments={density:5,breach:4,wind_burst:3,unbreaking:3,mending:1}]"
+```
+mace[enchantments={density:5,breach:4,wind_burst:3,unbreaking:3,mending:1}]
 ```
 
 #### Trident (Loyalty)
@@ -589,9 +592,16 @@ flyctl ssh console --app da-mines -C "rcon-cli give PlayerName firework_rocket[f
 
 ## Tips
 
-1. **Replace `PlayerName`** with the actual player's username in all commands.
+1. **Use `minecraft:give` for enchanted items** - EssentialsX intercepts the regular `give` command and doesn't support component syntax. Always use `minecraft:give` to bypass EssentialsX.
 
-2. **Incompatible enchantments** cannot be combined:
+2. **Pipe through shell for complex items** - Use this pattern:
+   ```bash
+   flyctl ssh console --app da-mines -C "sh -c 'printf \"minecraft:give Player item[...] 1\n\" | rcon-cli'"
+   ```
+
+3. **Replace `PlayerName`** with the actual player's username in all commands.
+
+4. **Incompatible enchantments** cannot be combined:
    - Sharpness / Smite / Bane of Arthropods (choose one)
    - Protection / Fire Protection / Blast Protection / Projectile Protection (choose one)
    - Silk Touch / Fortune (choose one)
@@ -600,10 +610,6 @@ flyctl ssh console --app da-mines -C "rcon-cli give PlayerName firework_rocket[f
    - Channeling / Riptide (choose one)
    - Depth Strider / Frost Walker (choose one)
    - Multishot / Piercing (choose one)
-
-3. **Quotes in custom names** - Use escaped quotes for names with spaces.
-
-4. **Command length limits** - Very long commands may need to be split.
 
 5. **Case sensitivity** - All item and enchantment IDs are lowercase with underscores.
 
