@@ -97,6 +97,8 @@ This server is whitelisted. To join, an admin must add you.
 
 ## Admin Commands
 
+See [PLAYER_DATA.md](PLAYER_DATA.md) for commands to query player inventories, equipment, health, and more.
+
 Check server status:
 ```bash
 flyctl status --app da-mines
